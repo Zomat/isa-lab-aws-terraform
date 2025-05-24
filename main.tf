@@ -46,7 +46,7 @@ resource "aws_lambda_function" "main" {
 
    environment {
       variables = {
-         DYNAMODB_TABLE = aws_dynamodb_table.sensors.name
+         DYNAMODB_TABLE = module.dynamodb.table_name
          SQS_QUEUE_URL = aws_sqs_queue.sensor_queue.id
          SNS_TOPIC_ARN = aws_sns_topic.temperature_alert.arn
       }
