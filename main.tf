@@ -8,15 +8,9 @@ data "aws_iam_role" "main_role" {
    name = "LabRole"
 }
 
-resource "aws_dynamodb_table" "sensors" {
-   name = "SensorsT"
-   billing_mode = "PAY_PER_REQUEST"
-   hash_key = "sensor_id"
-
-   attribute {
-      name = "sensor_id"
-      type = "S"
-   }
+module "dynamodb" {
+  source     = "./modules/dynamodb"
+  table_name = "SensorsT"
 }
 
 resource "aws_sqs_queue" "sensor_queue" {
