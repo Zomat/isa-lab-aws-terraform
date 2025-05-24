@@ -21,7 +21,7 @@ module "sqs" {
 module "sns" {
   source            = "./modules/sns"
   topic_name        = "TemperatureAlertT"
-  notification_email = var.notification_email
+  notification_email = data.aws_ssm_parameter.notification_email.value
 }
 
 module "lambda" {
