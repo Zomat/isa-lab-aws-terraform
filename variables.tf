@@ -1,6 +1,6 @@
-variable "notification_email" {
-  description = "Adres e-mail do subskrypcji SNS"
-  type        = string
+data "aws_ssm_parameter" "notification_email" {
+  name = "/notification/email"
+  with_decryption = true
 }
 
 variable "aws_region" {
